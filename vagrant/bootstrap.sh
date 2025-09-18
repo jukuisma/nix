@@ -13,14 +13,14 @@ fi
 # Partitioning
 wipefs --all /dev/vda
 fdisk /dev/vda <<EOF
-o
+g
 n
-p
 1
 2048
 +500M
+t
+1
 n
-p
 2
 
 
@@ -34,7 +34,7 @@ mkfs.ext4 /dev/vda2
 # Mount
 mount /dev/vda2 /mnt
 mkdir /mnt/boot
-mount /dev/vda1 /mnt/boot
+mount -o umask=077 /dev/vda1 /mnt/boot
 
 # Swap
 dd if=/dev/zero of=/mnt/.swapfile bs=1024 count=2M
