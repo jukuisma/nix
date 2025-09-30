@@ -90,8 +90,6 @@
     xxd
   ];
 
-  programs.command-not-found.enable = false;
-
   programs.fish.enable = true;
   users.users.vagrant = {
     shell = pkgs.fish;
