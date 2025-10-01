@@ -6,8 +6,9 @@
   ];
 
   boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.systemd-boot.configurationLimit = 32;
+  boot.loader.efi.canTouchEfiVariables = true;
+  boot.kernelParams = [ "console=ttyS0,115200n8" ];
 
   swapDevices = [
     {
@@ -15,13 +16,6 @@
       size = 2 * 1024;
     }
   ];
-
-  boot.kernelParams = [ "console=ttyS0,115200n8" ];
-  boot.loader.grub.extraConfig = "
-    serial --speed=115200 --unit=0 --word=8 --parity=no --stop=1
-    terminal_input serial
-    terminal_output serial
-  ";
 
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
