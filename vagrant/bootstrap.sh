@@ -44,6 +44,7 @@ swapon /mnt/.swapfile
 
 # Channels
 nix-channel --add https://nixos.org/channels/nixos-unstable nixos
+nix-channel --update
 
 # Config
 nixos-generate-config --root /mnt
