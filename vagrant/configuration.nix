@@ -35,9 +35,11 @@
     LC_TIME = "en_IE.UTF-8";
   };
 
+  users.users.root.initialPassword = "vagrant";
   users.users.vagrant = {
     isNormalUser = true;
     description = "vagrant";
+    initialPassword = "vagrant";
     extraGroups = [
       "networkmanager"
       "wheel"

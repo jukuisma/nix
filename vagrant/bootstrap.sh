@@ -42,10 +42,20 @@ chmod 600 /mnt/.swapfile
 mkswap /mnt/.swapfile
 swapon /mnt/.swapfile
 
+# Channels
+nix-channel --add https://nixos.org/channels/nixos-unstable nixos
+
 # Config
 nixos-generate-config --root /mnt
 cp configuration.nix /mnt/etc/nixos/configuration.nix
 
 # Install
 cd /mnt
-nixos-install
+nixos-install --no-root-passwd
+
+# Dotfiles
+nixos-enter -c 'mkdir /home/vagrant/github'
+nixos-enter -c 'git clone https://github.com/jukuisma/dotfiles /home/vagrant/github/dotfiles'
+nixos-enter -c 'chown -R vagrant:users /home/vagrant/github'
+
+poweroff
